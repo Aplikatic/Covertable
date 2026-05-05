@@ -4,6 +4,7 @@ RUN apk add --no-cache \
     nginx \
     supervisor \
     curl \
+    curl-dev \
     git \
     unzip \
     zip \
@@ -18,10 +19,9 @@ RUN apk add --no-cache \
     npm
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install \
+    && docker-php-ext-install -j$(nproc) \
         pdo_mysql \
         bcmath \
-        ctype \
         curl \
         dom \
         exif \
@@ -29,7 +29,6 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         intl \
         mbstring \
         opcache \
-        tokenizer \
         xml \
         zip \
         pcntl

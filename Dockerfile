@@ -1,22 +1,21 @@
-FROM php:8.3-fpm-alpine AS base
+FROM php:8.3-fpm AS base
 
-RUN apk add --no-cache \
-    nginx \
-    supervisor \
-    curl \
-    curl-dev \
-    git \
-    unzip \
-    zip \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    libxml2-dev \
-    icu-dev \
-    oniguruma-dev \
-    libzip-dev \
-    nodejs \
-    npm
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        nginx \
+        supervisor \
+        curl \
+        git \
+        unzip \
+        zip \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
+        libxml2-dev \
+        libicu-dev \
+        libonig-dev \
+        libzip-dev \
+        libcurl4-openssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \

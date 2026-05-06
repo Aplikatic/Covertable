@@ -31,6 +31,8 @@ services:
       LOG_CHANNEL: stderr
       LOG_LEVEL: warning
 
+      IGNITER_LOCATION_MODE: single
+
     volumes:
       - storage_data:/var/www/html/storage
     depends_on:

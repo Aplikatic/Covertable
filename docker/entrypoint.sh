@@ -37,7 +37,9 @@ php artisan storage:link 2>/dev/null || true
 mkdir -p storage/app/public/media/uploads
 chown -R www-data:www-data storage/app/public 2>/dev/null || true
 
-echo "[entrypoint] Publishing theme assets..."
+echo "[entrypoint] Publishing vendor assets (admin + extensions + theme)..."
+php artisan vendor:publish --tag=igniter-assets --force
+php artisan vendor:publish --tag=laravel-assets --force
 php artisan igniter:theme-vendor-publish --force
 
 echo "[entrypoint] Ensuring default theme is registered and active..."

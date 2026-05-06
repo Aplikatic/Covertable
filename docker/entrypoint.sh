@@ -40,7 +40,9 @@ php artisan igniter:theme-vendor-publish --force
 echo "[entrypoint] Ensuring default theme is registered and active..."
 php artisan tinker --execute='
 \Igniter\Main\Models\Theme::syncAll();
-$code = config("igniter-system.defaultTheme");
+$preferred = "covertable";
+$fallback = config("igniter-system.defaultTheme");
+$code = \Igniter\Main\Models\Theme::whereCode($preferred)->exists() ? $preferred : $fallback;
 $theme = \Igniter\Main\Models\Theme::whereCode($code)->first();
 if ($theme) {
     if (!$theme->status) { $theme->status = true; $theme->save(); }

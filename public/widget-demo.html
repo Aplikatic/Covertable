@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo — Web de restaurante con widget Covertable</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            background: #fafaf8;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 32px;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .nav__brand { font-weight: 700; font-size: 20px; }
+        .nav__links a {
+            margin-left: 20px;
+            color: #6b6b6b;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 24px;
+            background: linear-gradient(180deg, #fff 0%, #fafaf8 100%);
+        }
+        .hero h1 {
+            font-size: 42px;
+            margin: 0 0 16px;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #6b6b6b;
+            max-width: 560px;
+            margin: 0 auto 32px;
+            line-height: 1.5;
+        }
+        .hero__cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .info {
+            max-width: 720px;
+            margin: 60px auto;
+            padding: 32px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+        }
+        .info code {
+            background: #f3f3f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        footer {
+            text-align: center;
+            padding: 32px;
+            color: #999;
+            font-size: 13px;
+            border-top: 1px solid #e5e5e5;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__brand">Restaurante Demo</div>
+        <div class="nav__links">
+            <a href="#">Inicio</a>
+            <a href="#">Carta</a>
+            <a href="#">Reservas</a>
+            <a href="#">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Comida deliciosa, lista en minutos</h1>
+        <p>
+            Esta es una página simulada que demuestra cómo se vería la web de un cliente
+            con el widget Covertable embebido. Pulsa el botón flotante para abrir el flujo
+            de pedido sin salir de esta página.
+        </p>
+    </section>
+
+    <div class="info">
+        <strong>Cómo funciona</strong>
+        <p>
+            Esta página incluye una sola etiqueta <code>&lt;script&gt;</code> apuntando a
+            <code>/widget.js</code> de la instalación Covertable. El script inyecta un botón
+            flotante y, al pulsarlo, abre un iframe modal con el flujo de pedido completo.
+        </p>
+        <p>
+            En producción el cliente final pegaría exactamente el mismo snippet en su propia
+            web (WordPress, Wix, HTML estático, etc.). El widget se sirve desde la URL del
+            tenant de Covertable.
+        </p>
+    </div>
+
+    <footer>
+        Demo de integración — © Covertable
+    </footer>
+
+    <script src="/widget.js" data-button-text="Hacer pedido"></script>
+</body>
+</html>

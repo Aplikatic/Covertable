@@ -1,0 +1,9 @@
+{
+    "code": "covertable",
+    "name": "Covertable",
+    "description": "Covertable theme — child of igniter-orange with embeddable widget support.",
+    "parent": "igniter-orange",
+    "version": "0.1.0",
+    "author": "Aplikatic",
+    "homepage": "https://covertable.es"
+}

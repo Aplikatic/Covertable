@@ -34,10 +34,22 @@ php artisan storage:link 2>/dev/null || true
 mkdir -p storage/app/public/media/uploads
 chown -R www-data:www-data storage/app/public 2>/dev/null || true
 
-php artisan igniter:theme-vendor-publish --force 2>/dev/null || true
+echo "[entrypoint] Publishing theme assets..."
+php artisan igniter:theme-vendor-publish --force
 
-php artisan config:cache 2>/dev/null || true
-php artisan route:cache 2>/dev/null || true
-php artisan view:cache 2>/dev/null || true
+echo "[entrypoint] Ensuring default theme is registered and active..."
+php artisan tinker --execute='
+\Igniter\Main\Models\Theme::syncAll();
+$code = config("igniter-system.defaultTheme");
+$theme = \Igniter\Main\Models\Theme::whereCode($code)->first();
+if ($theme) {
+    if (!$theme->status) { $theme->status = true; $theme->save(); }
+    if (!$theme->is_default) { \Igniter\Main\Models\Theme::activateTheme($code, true); }
+}
+'
+
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 
 exec "$@"

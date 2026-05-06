@@ -28,6 +28,9 @@ services:
       CACHE_DRIVER: file
       SESSION_DRIVER: file
 
+      LOG_CHANNEL: stderr
+      LOG_LEVEL: warning
+
     volumes:
       - storage_data:/var/www/html/storage
     depends_on:

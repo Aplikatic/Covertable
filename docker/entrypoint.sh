@@ -24,7 +24,10 @@ try {
 done
 echo "[entrypoint] Database ready"
 
+mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views bootstrap/cache
+touch storage/logs/laravel.log
 chown -R www-data:www-data storage bootstrap/cache 2>/dev/null || true
+chmod -R ug+rwX storage bootstrap/cache 2>/dev/null || true
 
 echo "[entrypoint] Running TastyIgniter migrations..."
 php artisan igniter:up --force
